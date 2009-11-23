@@ -1,0 +1,25 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           EntityUrl
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          entity_url
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display:  [ id, =entity, url, title, creator ]
+      filter:
+        display:  [ entity_id, url, title, urltype, created_by ]
+      form:
+        display:  
+          "NONE": [ entity_id, url, foreign_id, title, urltype, created_by ]
+          "Verification": [ EntityUrlVerified ]
+      edit:    ~
+      new:     ~

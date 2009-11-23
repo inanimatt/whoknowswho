@@ -1,0 +1,23 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           FactSourceVerified
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          fact_source_verified
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display:  [ id, fact_source, creator ]
+      filter:
+        display:  [ fact_source_id, created_by, created_at ]
+      form:
+        display:  [ fact_source_id, score, created_by, comment  ]
+      edit:    ~
+      new:     ~

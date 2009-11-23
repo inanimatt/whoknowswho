@@ -1,0 +1,1 @@
+<p>Entity URLs are a way to link web sites to Entities (people, companies, etc). Scroll to the bottom of the page for help on filling in the form.</p>

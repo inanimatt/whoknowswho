@@ -1,0 +1,182 @@
+# # Populate this file with data to be loaded by your ORM's *:data-load task.
+# # You can create multiple files in this directory (i.e. 010_users.yml,
+# # 020_articles.yml, etc) which will be loaded in alphabetical order.
+# # 
+# # See documentation for your ORM's *:data-load task for more information.
+# 
+# User:
+#   fabien:
+#     username: fabien
+#     password: changeme
+#     name:     Fabien Potencier
+#     email:    fabien.potencier@symfony-project.com
+#   kris:
+#     username: Kris.Wallsmith
+#     password: changeme
+#     name:     Kris Wallsmith
+#     email:    kris.wallsmith@symfony-project.com
+
+
+Entity:
+  e1:
+    Creator: adminuser
+    created_at: '2009-09-09'
+    EntityType: person
+    name:   Anne Other
+    version_comment: Shortened name
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    
+  e2:
+    Creator: adminuser
+    created_at: '2009-09-09'
+    EntityType: person
+    name:   No Wan
+    version_comment: Entity creation
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    
+
+  e3:
+    Creator: adminuser
+    created_at: '2009-09-09'
+    EntityType: club
+    name:   "The Noname Club"
+    version_comment: Entity creation
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    
+
+
+
+EntityAlias:
+  ea1:
+    Entity: e1
+    name: Another
+    created_at: "2009-09-10"
+    Creator: adminuser
+
+EntityUrl:
+  eu1:
+    Entity: e1
+    Url: http://en.wikipedia.org/wiki/Anne_Other
+    created_at: "2009-09-09"
+    title: "Wikipedia: Anne Other"
+    urltype: 'wikipedia'
+    Creator: adminuser
+  
+  eu2:
+    Entity: e2
+    Url: http://en.wikipedia.org/wiki/No_Wan
+    created_at: "2009-09-09"
+    title: "Wikipedia: No Wan"
+    urltype: 'wikipedia'
+    Creator: adminuser
+
+
+
+EntityUrlVerified:
+  ev1:
+    EntityUrl: eu1
+    score:  1
+    created_at: "2009-09-09"
+    Creator: adminuser
+    comment: 'Good'
+
+  ev2:
+    EntityUrl: eu2
+    score:  1
+    created_at: "2009-09-09"
+    Creator: adminuser
+    comment: 'Looks right to me'
+
+
+
+
+Fact:
+  f1:
+    Entity: e2
+    RelatedEntity: e3
+    title: "Anne is a member of the Noname club"
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    created_at: '2009-09-09'
+    start: '1988-01-01'
+    end: '1988-01-01'
+    Creator: adminuser
+
+  f2:
+    Entity: e1
+    RelatedEntity: e3
+    title: "No Wan was a member of the Noname club"
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    created_at: '2009-09-09'
+    start: '1988-01-01'
+    end: '1988-01-01'
+    Creator: adminuser
+
+
+
+FactSource:
+  fs1:
+    Fact: f1
+    Url: "http://www.example.com/"
+    SourceType: typepublic
+    created_at: '2009-09-09'
+    is_supporting: 1
+    title: "Example.com"
+    Creator: adminuser
+
+  fs2:
+    Fact: f2
+    Url: "http://www.example.com/"
+    SourceType: typepublished
+    created_at: '2009-09-09'
+    is_supporting: 1
+    title: "Example.com"
+    Creator: adminuser
+
+
+FactSourceVerified:
+  fsv1:
+    FactSource: fs1
+    score: 1
+    created_at: "2009-09-09"
+    Creator: adminuser
+    comment: 'Looks good'
+  
+  fsv2:
+    FactSource: fs2
+    score: 1
+    created_at: "2009-09-09"
+    Creator: adminuser
+    comment: 'Looks good'
+    
+
+
+
+FactComment:
+  fc1:
+    Fact: f1
+    fact_score: 1
+    comment_score: 0
+    Creator: adminuser
+    created_at: '2009-09-09'
+    comment: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+
+
+Story:
+  s1:
+    StoryType: st1
+    is_public: 1
+    created_at: '2009-09-09'
+    Creator: adminuser
+    Facts: [f1, f2]
+    title:  "Who's in the No Name Club?"
+    version_comment: Initial version
+    description: "We may never know. Here's some nonsense latin to soothe you. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+
+StoryComment:
+  sc1:
+    Story: s1
+    Creator: adminuser
+    created_at: "2009-09-09"
+    comment: "This is an outrage!"

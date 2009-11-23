@@ -1,0 +1,23 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           EntityUrlVerified
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          entity_url_verified
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [ id, =entity_url, score, creator ]
+      filter:  
+        display: [ entity_url_id, created_by, created_at ]
+      form:
+        display: [ entity_url_id, score, created_by, comment ]
+      edit:    ~
+      new:     ~

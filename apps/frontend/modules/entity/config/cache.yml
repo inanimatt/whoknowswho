@@ -1,0 +1,13 @@
+index:
+  enabled: false
+
+
+listStoriesByEntity:
+  enabled: false
+
+map:
+  lifetime: 21600
+
+connections:
+  enabled: false
+

@@ -1,0 +1,12 @@
+# default values
+all:
+  tuicachehandler:
+    timeout:  60
+    
+  recaptcha:
+    public_key: CHANGEME
+    private_key: CHANGEME
+    
+  email:
+    from_address: no-reply@example.com
+    from_name: WKW

@@ -1,0 +1,35 @@
+options: 
+  type: INNODB 
+  collate: utf8_unicode_ci 
+  charset: utf8
+
+EntityCreationQueue:
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    entity_id:
+      type: integer(8)
+      notnull: false
+      unique: true
+    mp_info:
+      type: enum
+      values: [pending,active,done]
+      notnull: true
+      default: pending
+    person:
+      type: enum
+      values: [pending,active,done]
+      notnull: true
+      default: pending
+      
+    
+  relations:
+    Entity:
+      class: Entity
+      local: entity_id
+      foreign: id
+      type: one
+      onDelete: cascade

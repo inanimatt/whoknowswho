@@ -1,0 +1,192 @@
+# Entities
+
+entity_list:
+  url: /:entity_type.:format
+  param: { module: entity, action: index, format: html }
+  requirements:
+    format: html|xml|json
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+
+entity_view:
+  url: /:entity_type/:id.:format
+  param: { module: entity, action: view, format: html }
+  requirements:
+    format: html|xml|json
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+
+entity_quickinfo:
+  url: /:entity_type/:id/quickinfo.:format
+  param: { module: entity, action: quickInfo, format: html }
+  requirements:
+    format: html|xml|json
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+    
+
+entity_map:
+  url: /:entity_type/:id/map.:format
+  param: { module: entity, action: map, format: html }
+  requirements:
+    format: html|xml|json
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+
+entity_connections:
+  url: /:entity_type/:id/connections.:format
+  param: { module: entity, action: connections, format: html }
+  requirements:
+    format: html|xml|json
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+  
+entity_connections_restricted:
+  url: /:entity_type/:id/connections/:related_id.:format
+  param: { module: entity, action: connections, format: html }
+  requirements:
+    format: html|xml|json|ajax
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+
+entity_interesting_facts:
+  url: /:entity_type/:id/interesting_facts.:format
+  param: { module: entity, action: interestingFacts, format: html }
+  requirements:
+    format: html|xml|json|ajax
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+
+
+
+# Entity story
+entity_story_list:
+  url: /:entity_type/:id/stories.:format
+  param: { module: entity, action: listStoriesByEntity, format: html }
+  requirements:
+    format: html|xml|json
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+
+
+entity_story_view:
+  url: /:entity_type/:entity_id/stories/:id.:format
+  param: { module: stories, action: viewByEntity, format: html }
+  requirements:
+    format: html|xml|json
+    entity_type: clubs|committees|companies|parties|people|schools|entities
+
+
+
+
+# Stories
+story_list:
+  url: /stories.:format
+  param: { module: stories, action: index, format: html }
+  requirements:
+    format: html|xml|json
+    
+
+story_view:
+  url: /stories/:id.:format
+  param: { module: stories, action: view, format: html }
+  requirements:
+    format: html|xml|json|plain
+
+#story_comments
+story_comment_confirm:
+  url: /story_comment/confirm.:format
+  param: { module: story_comment, action: confirm, format: html }
+  requirements:
+    format: html|xml|json
+    
+get_all_comments:
+  url: /story_comment/getallcomments.:format
+  param: { module: story_comment, action: getAllComments, format: html }
+  requirements:
+    format: html|xml|json
+
+#story_rating
+story_rating_update:
+  url: /story_rating/update.:format
+  param: { module: story_rating, action: update, format: html }
+  requirements:
+    format: html|xml|json
+
+# Search
+search_results:
+  url: /search.:format
+  param: { module: search, action: index, format: html }
+  requirements:
+    format: html|xml|json
+
+
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+preview:
+  url:   /preview/:id
+  param: { module: default, action: preview }
+
+contact:
+  url: /contact.:format
+  param: { module: default, action: contact, format: html }
+  requirements:
+    format: html
+
+suggest:
+  url: /suggest.:format
+  param: { module: default, action: suggest, format: html }
+  requirements:
+    format: html
+    
+suggest_connection:
+  url: /suggestconnection.:format
+  param: { module: default, action: suggestConnection, format: html }
+  requirements:
+    format: html
+
+suggest_fact:
+  url: /suggestfact.:format
+  param: { module: default, action: suggestFact, format: html }
+  requirements:
+    format: html
+
+report:
+  url: /report.:format
+  param: { module: default, action: report, format: html }
+  requirements:
+    format: html
+    
+report_comment:
+  url: /report_comment.:format
+  param: { module: default, action: reportComment, format: html }
+  requirements:
+    format: html
+    
+thankyou:
+  url: /thankyou.:format
+  param: { module: default, action: thankyou, format: html }
+  requirements:
+    format: html
+    
+about:
+  url: /about.:format
+  param: { module: default, action: about, format: html }
+  requirements:
+    format: html
+    
+rules:
+  url: /rules.:format
+  param: { module: default, action: rules, format: html }
+  requirements:
+    format: html
+    
+terms:
+  url: /terms.:format
+  param: { module: default, action: terms, format: html }
+  requirements:
+    format: html
+
+# default_index:
+#   url:   /:module
+#   param: { action: index }
+
+#Only want declared URLs, thanks
+default:
+  url:   /:module/:action/*

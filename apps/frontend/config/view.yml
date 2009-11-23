@@ -1,0 +1,20 @@
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        Who knows who
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  stylesheets:
+    - /static/css/screen: { media: "screen,projection"}
+    - /static/css/c4foaf: { media: "screen,projection"}
+    - /static/sifr/sifr: { media: "screen,projection"}
+
+  javascripts:    [/static/js/site, /static/js/swfobject.js, /static/js/jquery.scrollTo.js]
+
+  has_layout:     true
+  layout:         layout

@@ -1,0 +1,7 @@
+# Just enter some IP addresses to your memcached servers here
+# Alternatively, if you're on Scalr, you can enter a pathname
+# like /etc/aws/hosts/memcached and that directory listing will
+# be taken to be a list of hostnames.
+#
+# If you have more than one memcached instance, NEVER use 'localhost' or 127.0.0.1
+localhost

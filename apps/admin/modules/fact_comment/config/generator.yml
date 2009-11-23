@@ -1,0 +1,23 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           FactComment
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          fact_comment
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:
+        display:  [ fact_id, created_by, created_at ]
+      
+      form:
+        display:  [ fact_id, fact_score, comment_score, comment, created_by ]
+      edit:    ~
+      new:     ~

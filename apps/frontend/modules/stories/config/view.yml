@@ -1,0 +1,2 @@
+viewSuccess:
+  javascripts: [/static/js/site, /static/sifr/sifr, /static/sifr/sifr-config, /static/js/swfobject.js, /static/js/jquery.rating.js, /static/js/jquery.cookie.js]

@@ -1,0 +1,37 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           StoryComment
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          story_comment
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:
+        created_by: { label: Approved by }
+      list:
+        display: [ username, =story, comment, email_confirmed, comment_approved, created_at, updated_at]
+        layout:         stacked
+        params: |
+          Username: <strong>%%username%%</strong><br />Story: <strong>%%=story%%</strong><br />Comment: <em>%%comment%%
+          <br />Comment Approved: %%_comment_approved%% | Email Confirmed: %%_email_confirmed%% | Submitted On: %%created_at%%
+        object_actions:
+          _edit:        false
+          _delete:      false
+          approvecomment:   { label: Approve, action: approveComment }        
+      filter:
+        display: [ username, story_id, email_confirmed, comment_approved, created_at, updated_at]
+      form:
+      edit:
+        actions:
+          _delete:       ~
+          _list:         ~
+          approvecomment:   { label: Approve, action: approveComment }
+          _save:         ~
+          _save_and_add: ~
+      new:     ~

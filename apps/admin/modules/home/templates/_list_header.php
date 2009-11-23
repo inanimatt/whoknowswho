@@ -1,0 +1,3 @@
+<p>Click the "+ New" button to create a new home page content object. The actual home page will always show the most-recently updated object in the list below, that also has a tick next to "published". By creating a new content object with the "published" option off, you can edit and prepare content without making it live until you're ready.</p>
+
+<p>Regarding images, these must be uploaded by Tui or C4 Tech and synchronised across all the application servers before you publish. Alternatively, host them remotely and use full URLs in the content editor. Because of the nature of the hosting, there are multiple web servers and they come and go according to demand.</p>

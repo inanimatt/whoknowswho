@@ -1,0 +1,18 @@
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    #title:        symfony project
+    #description:  symfony project
+    #keywords:     symfony, project
+    language:     en
+    #robots:       index, follow
+
+  stylesheets:    [/static/css/main, /static/css/smoothness/jquery-ui-1.7.2.custom.css, /sfFormExtraPlugin/css/jquery.autocompleter.css]  
+    
+
+  javascripts:    [/sfFormExtraPlugin/js/jquery.autocompleter.js]
+
+  has_layout:     true
+  layout:         layout

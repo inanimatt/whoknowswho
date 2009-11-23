@@ -1,0 +1,15 @@
+# Flush entity and story views to the database every minute
+* * * * * /opt/c4foaf-app-2009-11-05/symfony maintenance:flush-views
+
+# Rebuild the 'interest' metric hourly
+1 * * * * /opt/c4foaf-app-2009-11-05/symfony maintenance:update-interest
+
+# Update the search engine indexes hourly
+2 * * * * /opt/c4foaf-app-2009-11-05/symfony maintenance:reindex
+
+# Refresh action-required tables for entities and facts hourly.
+5 * * * * /opt/c4foaf-app-2009-11-05/symfony maintenance:check-entities
+6 * * * * /opt/c4foaf-app-2009-11-05/symfony maintenance:check-facts
+
+# Recalculate connectedness daily
+30 1 * * * /opt/c4foaf-app-2009-11-05/symfony maintenance:update-connectedness
