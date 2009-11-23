@@ -1,0 +1,25 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           ContactMessages
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          contact_messages
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [ message_type, name, email, message, created_at, updated_at]
+        layout:         stacked
+        params: |
+          <strong>%%message_type%%</strong><br />name: <strong>%%name%%</strong> email: <strong>%%email%%</strong><br /><br />"<em>%%message%%"<br /><br /><strong>created:</strong> %%created_at%% <strong>updated:</strong> %%created_at%%
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

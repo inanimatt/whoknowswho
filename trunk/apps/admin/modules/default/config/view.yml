@@ -1,0 +1,5 @@
+default:
+  stylesheets:
+    - /static/css/blueprint/screen: { media: screen }
+    - /static/css/blueprint/print: { media: print }
+      

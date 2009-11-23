@@ -1,0 +1,173 @@
+home:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Home
+    module:               home
+    prefix_path:          /home
+    column:               id
+    with_wildcard_routes: true
+
+contact_messages:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ContactMessages
+    module:               contact_messages
+    prefix_path:          /contact_messages
+    column:               id
+    with_wildcard_routes: true
+
+fact_comment:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                FactComment
+    module:               fact_comment
+    prefix_path:          fact_comment
+    column:               id
+    with_wildcard_routes: true
+
+disambiguation_entity:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                DisambiguationEntity
+    module:               disambiguation_entity
+    prefix_path:          disambiguation_entity
+    column:               Array
+    with_wildcard_routes: true
+
+story_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                StoryType
+    module:               story_type
+    prefix_path:          story_type
+    column:               id
+    with_wildcard_routes: true
+
+story_comment:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                StoryComment
+    module:               story_comment
+    prefix_path:          story_comment
+    column:               id
+    with_wildcard_routes: true
+
+fact_source_verified:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                FactSourceVerified
+    module:               fact_source_verified
+    prefix_path:          fact_source_verified
+    column:               id
+    with_wildcard_routes: true
+
+entity_url_verified:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                EntityUrlVerified
+    module:               entity_url_verified
+    prefix_path:          entity_url_verified
+    column:               id
+    with_wildcard_routes: true
+
+entity_url:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                EntityUrl
+    module:               entity_url
+    prefix_path:          entity_url
+    column:               id
+    with_wildcard_routes: true
+
+story:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Story
+    module:               story
+    prefix_path:          story
+    column:               id
+    with_wildcard_routes: true
+
+fact_source:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                FactSource
+    module:               fact_source
+    prefix_path:          fact_source
+    column:               id
+    with_wildcard_routes: true
+
+fact:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Fact
+    module:               fact
+    prefix_path:          fact
+    column:               id
+    with_wildcard_routes: true
+
+entity_alias:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                EntityAlias
+    module:               entity_alias
+    prefix_path:          entity_alias
+    column:               id
+    with_wildcard_routes: true
+
+disambiguation:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Disambiguation
+    module:               disambiguation
+    prefix_path:          disambiguation
+    column:               id
+    with_wildcard_routes: true
+
+entity:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Entity
+    module:               entity
+    prefix_path:          entity
+    column:               id
+    with_wildcard_routes: true
+
+source_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SourceType
+    module:               source_type
+    prefix_path:          source_type
+    column:               id
+    with_wildcard_routes: true
+
+fact_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                FactType
+    module:               fact_type
+    prefix_path:          fact_type
+    column:               id
+    with_wildcard_routes: true
+
+entity_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                EntityType
+    module:               entity_type
+    prefix_path:          entity_type
+    column:               id
+    with_wildcard_routes: true
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

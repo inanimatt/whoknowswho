@@ -1,0 +1,5 @@
+xmlSuccess:
+  has_layout: false
+
+  http_metas:
+    content_type: text/xml

@@ -1,0 +1,934 @@
+options: 
+  type: INNODB 
+  collate: utf8_unicode_ci 
+  charset: utf8
+
+
+ContactMessages:
+  actAs:
+    Timestampable:
+    
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    message_type:
+      type: string(32)
+    name:
+      type: string(32)
+      notnull: true
+    email:
+      type: string(255)
+      notnull: true
+    message:
+      type: string(1000)
+      notnull: true
+
+
+
+Disambiguation:
+  actAs:
+    Timestampable:
+    
+  tableName: disambiguation
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    title:
+      type: string(255)
+      notnull: true
+    created_by: integer(4)
+  relations:
+    Creator:
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: set null
+    Entities:
+      class: Entity
+      local: disambiguation_id
+      foreign: entity_id
+      type: many
+      foreignType: many
+      refClass: DisambiguationEntity
+
+
+
+DisambiguationEntity:
+  tableName: disambiguation_entity
+  columns:
+    disambiguation_id:
+      type: integer(4)
+      primary: true
+    entity_id:
+      type: integer(8)
+      primary: true
+
+  relations:
+    Disambiguation:
+      class: Disambiguation
+      local: disambiguation_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    Entity:
+      class: Entity
+      local: entity_id
+      foreign: id
+      type: one
+      onDelete: cascade
+      
+      
+
+Entity:
+  tableName: entity
+  actAs:
+    Searchable:
+      fields: [ name, subtitle]
+      batchUpdates: true
+    Sluggable:
+      unique: true
+      fields: [ name ]
+      canUpdate: true
+      uniqueIndex: true
+      indexName: slug
+      builder: [ tuiWikiUrl, urlize]
+    Versionable:
+      builderOptions:
+        baseClassName: FoafRecord
+      
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    entity_type_id:
+      type: integer(4)
+      notnull: true
+    is_locked:
+      type: integer(1)
+      default: '0'
+      notnull: true
+    superceded_by_id: integer(8)
+    authority_id: integer(8)
+    created_by: integer(4)
+    name:
+      type: string(255)
+      notnull: true
+    subtitle: string(255)
+    version_comment: string(255)
+    description: string(2147483647)
+    photo_url: string(255)
+    photo_caption: string(255)
+    photo_licence: string(255)
+    created_at: timestamp
+    updated_at: timestamp
+    views: 
+      type: integer(8)
+      notnull: true
+      default: 0
+    interest:
+      type: integer(2)
+      notnull: true
+      default: 0
+    connectedness:
+      type: integer(2)
+      notnull: true
+      default: 0
+  relations:
+    SupercededBy:
+      class: Entity
+      local: superceded_by_id
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: set null
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: set null
+    Authority:
+      class: Entity
+      local: authority_id
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: set null
+    EntityType:
+      local: entity_type_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    Disambiguation:
+      class: Disambiguation
+      local: entity_id
+      foreign: disambiguation_id
+      type: many
+      refClass: DisambiguationEntity
+    History:
+      class: EntityHistory
+      local: id
+      foreign: entity_id
+      type: many
+    Urls:
+      class: EntityUrl
+      local: id
+      foreign: entity_id
+      type: many
+    Facts:
+      class: Fact
+      local: id
+      foreign: entity_id
+      type: many
+    Mentions:
+      class: Fact
+      local: id
+      foreign: related_entity_id
+      type: many
+    Aliases:
+      class: EntityAlias
+      local: id
+      foreign: entity_id
+      type: many
+
+
+EntityActionRequired:
+  columns:
+    entity_id:
+      type: integer(8)
+      primary: true
+
+    needs_external_links: integer(1)
+    needs_wiki_page:      integer(1)
+    needs_description:    integer(1)
+    needs_facts:          integer(1)
+    needs_subtitle:       integer(1)
+
+
+  relations:
+    Entity:
+      class: Entity
+      local: entity_id
+      foreign: id
+      type: one
+      foreignType: one
+      foreignAlias: ActionRequired
+      onDelete: cascade
+
+
+
+EntityAlias:
+  actAs:
+    Searchable:
+      fields: [ name ]
+      batchUpdates: true
+    Timestampable:
+
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    entity_id:
+      type: integer(8)
+      notnull: true
+    name:
+      type: string(255)
+      notnull: true
+    created_by: integer(4)
+  relations:
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: set null
+    Entity:
+      local: entity_id
+      foreign: id
+      type: one
+      onDelete: cascade
+
+
+
+EntityType:
+  tableName: entity_type
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    title:
+      type: string(255)
+      notnull: true
+    url_slug:
+      type: string(32)
+      notnull: true
+    description:
+      type: string(2147483647)
+      notnull: true
+  indexes:
+    slug_idx:
+      fields: [url_slug]
+      type:   unique
+  relations:
+    Entities:
+      class: Entity
+      local: id
+      foreign: entity_type_id
+      type: many
+
+
+
+EntityUrl:
+  actAs: 
+    Timestampable:
+  
+  tableName: entity_url
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    entity_id:
+      type: integer(8)
+      notnull: true
+    url:
+      type: string(2147483647)
+      notnull: true
+    title: string(2147483647)
+    urltype: string(64)
+    created_by: integer(4)
+    foreign_id: string(255)
+  indexes:
+    equiv:
+      fields: [urltype, foreign_id]
+  relations:
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: set null
+    Entity:
+      class: Entity
+      local: entity_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    Verifications:
+      class: EntityUrlVerified
+      local: id
+      foreign: entity_url_id
+      type: many
+
+
+
+EntityUrlVerified:
+  actAs: 
+    Timestampable:
+  
+  tableName: entity_url_verified
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    entity_url_id:
+      type: integer(8)
+      notnull: true
+    score:
+      type: integer(2)
+      default: '0'
+      notnull: true
+    created_by:
+      type: integer(4)
+      notnull: true
+    comment: string(255)
+  relations:
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+    EntityUrl:
+      class: EntityUrl
+      local: entity_url_id
+      foreign: id
+      type: one
+      onDelete: cascade
+
+
+
+Fact:
+  actAs: 
+    Timestampable:
+  
+  tableName: fact
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    entity_id:
+      type: integer(8)
+      notnull: true
+    title:
+      type: string(255)
+      notnull: true
+    description:
+      type: string(2147483647)
+      notnull: true
+    related_entity_id: integer(8)
+    start: date
+    end: date
+    created_by: integer(4)
+    fact_type_id: integer(4)
+  relations:
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: set null
+    Entity:
+      local: entity_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    RelatedEntity:
+      class: Entity
+      local: related_entity_id
+      foreign: id
+      type: one
+      onDelete: set null
+    Comments:
+      class: FactComment
+      local: id
+      foreign: fact_id
+      type: many
+    Sources:
+      class: FactSource
+      local: id
+      foreign: fact_id
+      type: many
+    Stories:
+      class: Story
+      refClass: StoryFact
+      local: fact_id
+      foreign: story_id
+      type: many
+    FactType:
+      class: FactType
+      local: fact_type_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    
+
+
+FactActionRequired:
+  columns:
+    fact_id:
+      type: integer(8)
+      primary: true
+
+    needs_sources:        integer(1)
+    needs_description:    integer(1)
+
+  relations:
+    Fact:
+      class: Fact
+      local: fact_id
+      foreign: id
+      type: one
+      onDelete: cascade
+      foreignType: one
+      foreignAlias: ActionRequired
+
+
+
+FactComment:
+  actAs: 
+    Timestampable:
+
+  tableName: fact_comment
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    fact_id:
+      type: integer(8)
+      notnull: true
+    fact_score:
+      type: integer(2)
+      default: '0'
+      notnull: true
+    comment_score:
+      type: integer(2)
+      default: '0'
+      notnull: true
+    created_by:
+      type: integer(4)
+      notnull: true
+    comment: string(1000)
+  relations:
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+    Fact:
+      class: Fact
+      local: fact_id
+      foreign: id
+      type: one
+      onDelete: cascade
+
+
+      
+FactSource:
+  actAs: 
+    Timestampable:
+  
+  tableName: fact_source
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    fact_id:
+      type: integer(8)
+      notnull: true
+    url:
+      type: string(1024)
+      notnull: true
+    source_type_id:
+      type: integer(4)
+      notnull: true
+    is_supporting: 
+      type: integer(1)
+      default: 1
+    title: string(255)
+    created_by: integer(4)
+  relations:
+    SourceType:
+      local: source_type_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    Fact:
+      local: fact_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: set null
+    Verifications:
+      class: FactSourceVerified
+      local: id
+      foreign: fact_source_id
+      type: many
+      
+
+
+FactSourceVerified:
+  actAs: 
+    Timestampable:
+
+  tableName: fact_source_verified
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    fact_source_id:
+      type: integer(8)
+      notnull: true
+    score:
+      type: integer(2)
+      default: '0'
+      notnull: true
+    created_by:
+      type: integer(4)
+      notnull: true
+    comment: string(255)
+  relations:
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+    FactSource:
+      local: fact_source_id
+      foreign: id
+      type: one
+      onDelete: cascade
+
+
+
+FactType:
+  tableName: fact_type
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    type:
+      type: string(255)
+      notnull: true
+    description: string(2147483647)
+  relations:
+    Facts:
+      class: Fact
+      local: id
+      foreign: fact_type_id
+      type: many
+   
+      
+Home:
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    is_active: 
+      type: boolean
+      notnull: true
+      default: 0
+    feature_html: string(10240)
+    feature_copy_intro: string(10240)
+    feature_copy_extended: string(10240)
+    callout_html: string(10240)
+    story1_id: integer(8)
+    story1_image_url: string(255)
+    story2_id: integer(8)
+    story2_image_url: string(255)
+    story3_id: integer(8)
+    story3_image_url: string(255)
+    story4_id: integer(8)
+    story4_image_url: string(255)
+  relations:
+    Story1:
+      class: Story
+      local: story1_id
+      foreign: id
+      type: one
+      onDelete: set null
+    Story2:
+      class: Story
+      local: story2_id
+      foreign: id
+      type: one
+      onDelete: set null
+    Story3:
+      class: Story
+      local: story3_id
+      foreign: id
+      type: one
+      onDelete: set null
+    Story4:
+      class: Story
+      local: story4_id
+      foreign: id
+      type: one
+      onDelete: set null
+
+
+
+SourceType:
+  tableName: source_type
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    type:
+      type: string(255)
+      notnull: true
+    description: string(2147483647)
+  relations:
+    Sources:
+      class: FactSource
+      local: id
+      foreign: source_type_id
+      type: many
+
+
+
+Story:
+  tableName: story
+  actAs:
+    Searchable:
+      fields: [ title, subtitle, teaser, description ]
+      batchUpdates: true
+    Sluggable:
+      unique: true
+      fields: [ title ]
+      canUpdate: true
+      uniqueIndex: true
+      indexName: slug
+      builder: [ tuiWikiUrl, urlize]
+    Versionable:
+      builderOptions:
+        baseClassName: FoafRecord
+      
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    story_type_id:
+      type: integer(4)
+      notnull: true
+    is_public:
+      type: integer(1)
+      default: '0'
+      notnull: true
+    created_by:
+      type: integer(4)
+      notnull: true
+    title:
+      type: string(255)
+      notnull: true
+    subtitle: string(255)
+    version_comment: string(255)
+    description: string(2147483647)
+    photo_url: string(255)
+    photo_caption: string(255)
+    photo_licence: string(255)
+    teaser: string(512)
+    created_at: timestamp
+    updated_at: timestamp
+    views: 
+      type: integer(8)
+      notnull: true
+      default: 0
+    interest:
+      type: integer(2)
+      notnull: true
+      default: 0
+  relations:
+    StoryType:
+      local: story_type_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+    Comments:
+      class: StoryComment
+      local: id
+      foreign: story_id
+      type: many
+    Facts:
+      class: Fact
+      refClass: StoryFact
+      local: story_id
+      foreign: fact_id
+      type: many
+    StoryFacts:
+      class: StoryFact
+      local: id
+      foreign: story_id
+      type: many
+      foreignType: one
+    RelatedStories:
+      class: Story
+      refClass: StoryRelation
+      local: story_id
+      foreign: related_story_id
+      type: many
+    Rating:
+      class: StoryRating
+      local: id
+      foreign: story_id
+      type: one
+      
+
+StoryComment:
+  actAs: 
+    Timestampable:
+
+  tableName: story_comment
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    story_id:
+      type: integer(8)
+      notnull: true
+    created_by:
+      type: integer(4)
+      notnull: false
+    confirmation_token:
+      type: string(8)
+      default: '0'
+      notnull: true
+    email_confirmed:
+      type: integer(1)
+      default: '0'
+      notnull: true
+    comment_approved:
+      type: integer(1)
+      default: '0'
+      notnull: true
+    story_version: integer(8)
+    comment: string(1000)
+    email: string(255)
+    username: string(255)
+  relations:
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+    Story:
+      local: story_id
+      foreign: id
+      type: one
+      onDelete: cascade
+
+
+      
+StoryFact:
+  tableName: story_fact
+  columns:
+    story_id:
+      type: integer(8)
+      primary: true
+    fact_id:
+      type: integer(8)
+      primary: true
+    primary_entity:
+      type: enum
+      values: [entity,related]
+    story_order: integer
+    description: string(255)
+  relations:
+    Story:
+      class: Story
+      local: story_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    Fact:
+      class: Fact
+      local: fact_id
+      foreign: id
+      type: one
+      onDelete: cascade
+      
+
+StoryRating:
+  columns:
+    story_id:
+      type: integer(8)
+      primary: true
+    1_votes: 
+      type: integer
+      notnull: true
+      default: 0
+    2_votes: 
+      type: integer
+      notnull: true
+      default: 0
+    3_votes: 
+      type: integer
+      notnull: true
+      default: 0
+    4_votes: 
+      type: integer
+      notnull: true
+      default: 0
+    5_votes: 
+      type: integer
+      notnull: true
+      default: 0
+    average_vote: 
+      type: float
+      notnull: true
+      default: 0.0
+  relations:
+    Story:
+      class: Story
+      local: story_id
+      foreign: id
+      type: one
+      onDelete: cascade
+
+
+StoryRelation:
+  columns:
+    story_id:
+      type: integer(8)
+      primary: true
+    related_story_id:
+      type: integer(8)
+      primary: true
+    
+  relations:
+    Story:
+      class: Story
+      local: story_id
+      foreign: id
+      type: one
+      onDelete: cascade
+    RelatedStory:
+      class: Story
+      local: related_story_id
+      foreign: id
+      type: one
+      onDelete: cascade
+
+
+
+StoryType:
+  tableName: story_type
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    type:
+      type: string(255)
+      notnull: true
+    description: string(2147483647)
+  relations:
+    Stories:
+      class: Story
+      local: id
+      foreign: story_type_id
+      type: many
+

@@ -1,0 +1,52 @@
+div#header .submain .search form #gobutton{
+	position:absolute;
+	margin-top:8px;
+}
+div#header .submain .search p {
+	position:relative;
+	left:40px;
+	top:2px;
+}
+div#header .main .login form #logingobutton {
+	padding:1px 5px 1px 5px;
+	position:relative;
+	top:-6px;
+}
+div#header .main .login p a { 
+	margin:8px 0 0 8px;
+}
+div#header .submain .search {
+	right:19px;
+}
+.block-002 .rating div#star-holder{
+	left:25px !important;
+}
+.block-009 .divider {
+	margin:10px 12px 10px 20px;
+}
+.block-016 .pos { 
+	padding-bottom:10px;
+}
+.block-022 .pos .content, .content, .block-024 .pos .content {
+	margin-bottom:-4px;
+}
+.block-034 div.drop-down select {
+	margin-top:8px;
+}
+.block-038 {
+	padding-bottom:22px;
+}
+	.block-038 ul {
+		display:inline;
+	}
+		.block-038 ul li.prev a:hover {
+			margin-left:-5px;
+		}
+.form legend {
+	margin:4px 0 6px 238px;
+}
+.sIFR-active #block-044 h2.sIFR-c4 {
+	padding:5px 0 0 0;
+}
+		
+

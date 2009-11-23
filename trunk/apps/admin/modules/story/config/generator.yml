@@ -1,0 +1,34 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Story
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          story
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  
+        description:  { attributes: { rows: 8, cols: 80 }}
+
+      list:
+        display: [ id, =title, story_type, is_public, creator, created_at ]
+        table_method: retrieveAdminList
+      
+      filter:
+        display: [ story_type_id, is_public, created_by, created_at, title ]
+      form:    
+        fields:
+          title:        { attributes: { size: 80 }}
+          
+        display:
+          "NONE": [ title, slug, subtitle, teaser, description, created_by ]
+          "Rating": [ StoryRating ]
+          "Image": [ photo_url, photo_caption, photo_licence ]
+          "Metadata": [ story_type_id, is_public, version_comment ]
+      edit:    ~
+      new:     ~

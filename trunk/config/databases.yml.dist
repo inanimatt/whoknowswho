@@ -1,0 +1,24 @@
+all:
+
+  slave:
+    class:        sfDoctrineDatabase
+    attributes: { quote_identifier: true }
+    param:
+      dsn:        mysql:dbname=c4foaf_v1;host=localhost
+      username:   c4foaf_read
+      password:   CHANGEME
+      encoding:   utf8
+      persistent: true
+      pooling:    true
+
+  master:
+    class:        sfDoctrineDatabase
+    attributes: { quote_identifier: true }
+    param:
+      dsn:        mysql:dbname=c4foaf_v1;host=localhost
+      username:   c4foaf
+      password:   CHANGEMETOO
+      encoding:   utf8
+      persistent: true
+      pooling:    true
+

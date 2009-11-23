@@ -1,0 +1,11 @@
+# default values
+all:
+  twfy:
+    # Go to http://www.theyworkforyou.com/api/key
+    api_key: CHANGEME
+    # No more than one hit every 3 seconds
+    api_rate: 3
+      
+  tuicachehandler:
+    timeout:  3
+

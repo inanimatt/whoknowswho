@@ -1,0 +1,16 @@
+rendering: ~
+security: ~
+#  class: sfGuardBasicSecurityFilter
+# insert your own filters here
+
+tuiExternalLink:
+  class:  tuiExternalLinkFilter
+  param:
+    register_css: false
+    class:        external-url
+    new_window:   true
+
+
+cache:     ~
+
+execution: ~

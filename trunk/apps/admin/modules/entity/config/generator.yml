@@ -1,0 +1,32 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Entity
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          entity
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields: ~        
+      list:
+        display: [ id, =name, entity_type, version, created_at]
+        table_method: retrieveAdminList
+        
+      filter:  
+        display: [ entity_type_id, created_at, created_by, name]
+      form:
+        display: 
+          "NONE": [ entity_type_id, name, slug, subtitle, description]
+          "Photo": [ photo_url, photo_caption, photo_licence ]
+          "Metadata": [is_locked, superceded_by_id, authority_id, created_by, version_comment ]
+        fields:
+          
+      edit:    
+        title:  'Entity: "%%name%%"'
+      new:
+        title: 'Entity: new'

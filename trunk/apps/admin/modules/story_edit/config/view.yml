@@ -1,0 +1,2 @@
+default:
+  stylesheets:    [/static/css/blueprint/screen.css]  

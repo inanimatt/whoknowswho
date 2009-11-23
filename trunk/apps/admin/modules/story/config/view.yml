@@ -1,0 +1,2 @@
+default:
+  javascripts: [/static/js/tiny_mce/tiny_mce.js]

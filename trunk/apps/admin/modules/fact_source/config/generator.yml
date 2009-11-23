@@ -1,0 +1,26 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           FactSource
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          fact_source
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display:  [ id, =fact, url, source_type, is_supporting ]
+      filter:
+        display:  [ url, title, is_supporting, created_by ]
+      form:
+        display:  [ fact_id, url, title, source_type_id, is_supporting, created_by ]
+        fields:
+          title:  { attributes: { size: 80 }}
+          url:    { attributes: { cols: 80 }}
+      edit:    ~
+      new:     ~

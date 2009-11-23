@@ -1,0 +1,18 @@
+div#header .main .login form #logingobutton {
+	padding:1px 7px 2px 7px;
+}
+div#header .submain .search form #gobutton { 
+	padding:1px 7px 2px 7px;
+}
+.sIFR-active .heading-001 h2.hidden {
+	font-size:34px;
+	margin:0;
+	padding:0;
+}
+.sIFR-active .block-034 div.search-string p.hidden {
+	font-size:16px;
+	padding-right:5px;
+}
+.block-034 div.drop-down select {
+	margin-top:8px;
+}

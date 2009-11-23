@@ -1,0 +1,37 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Fact
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          fact
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:
+        description: { attributes: { rows: 8, cols: 80}}
+        start: { label: "Since" }
+        end: { label: "Until"}
+        entity_id: { label: "Entity" }
+      list:
+        display: [id, =entity, short_title, related_entity]
+        table_method: retrieveAdminList
+        
+      filter:  
+        display: [entity_id, fact_type_id, title, created_by, created_at]
+      
+      form:    
+        display:
+          "NONE": [entity_id, title, related_entity_id, description ]
+          "Metadata": [ fact_type_id, start, end, created_by]
+          "Sources": [ FactSource ]
+        fields:
+          title: { attributes: { size: 80 }}
+          
+      
+      edit:    ~
+      new:     ~
