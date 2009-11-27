@@ -14,7 +14,7 @@ generator:
       actions: ~
       fields: ~        
       list:
-        display: [ id, =name, entity_type, version, created_at]
+        display: [ id, =name, entity_type, created_at]
         table_method: retrieveAdminList
         
       filter:  
