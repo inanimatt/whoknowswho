@@ -123,10 +123,11 @@ p, dt {
 
 /* BLUEPRINT CSS RULE OVERRIDE
 ----------------------------------------*/
-.container {		
-	padding:0 0 0 10px;
-	width: 950px;
+.container {
 	background:#dbe0e2;
+	padding:0 0 0 10px;
+	position:relative;
+	width: 950px;
 }
 	.container.showgrid {
 		background-position: 10px 0;
@@ -380,7 +381,7 @@ div#header {
 					text-indent:-2000px;
 				}
 		
-		.logoarea #c4ad-Top-parent {
+		#c4ad-Top-parent {
 			height:90px;
 			min-width:728px;
 			overflow:hidden;
@@ -392,11 +393,11 @@ div#header {
 			z-index:9000;
 		}
 		
-			.logoarea #c4ad-Top-parent #c4ad-Top{
+			#c4ad-Top-parent #c4ad-Top{
 				position:absolute;
 				right:0;
 			}
-		#c4ad-07, #c4ad-x08, #c4ad-x10 #skyad-fix {
+		#c4ad-07, #c4ad-x08, #c4ad-x10, #skyad-fix {
 			display:none;
 		}
 		
