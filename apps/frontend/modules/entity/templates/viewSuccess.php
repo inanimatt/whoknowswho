@@ -117,7 +117,7 @@
                               <div class="connection<?php if ($i % 4 == 0) { print ' last';} ?>"> 
                                   <a href="<?php echo url_for('@entity_view?entity_type='.$oc['EntityType']['url_slug'].'&id='.$oc['slug']) ?>"><img src="<?php echo foaf_image($oc['photo_url'], true) ?>"  alt="<?php echo htmlspecialchars($oc['name'], ENT_COMPAT, 'utf-8') ?>"></a> 
                                   <a href="<?php echo url_for('@entity_view?entity_type='.$oc['EntityType']['url_slug'].'&id='.$oc['slug']) ?>"><?php echo htmlspecialchars($oc['name'], ENT_COMPAT, 'utf-8') ?></a>
-                                  <p><?php echo htmlspecialchars($connections['other'][0]['subtitle'], ENT_COMPAT, 'utf-8') ?></p>
+                                  <p><?php echo htmlspecialchars($oc['subtitle'], ENT_COMPAT, 'utf-8') ?></p>
                               </div>
                             <?php endforeach ?> 
                         </div>
