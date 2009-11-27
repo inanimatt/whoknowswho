@@ -185,8 +185,8 @@ $(function() {
     var $storyPage = $('#story-page');
 
     if ($storyPage.length) {
-        var $block46 = $('div#comments-area div.block-046');
-        var thanks = $('div#comments-area p.thanks').get(0);
+        var $block46 = $('#comments-area div.block-046');
+        var thanks = $('#comments-area p.thanks').get(0);
         var $showMore = $('p.showall a');
 
         $block46.hide();
