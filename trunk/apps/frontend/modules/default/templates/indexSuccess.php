@@ -55,7 +55,7 @@
                                     <div class="content">
                                     <?php if ($content['story1_image_url']): ?>
                                         <div class="image">
-                                            <a href="<?php echo $s->getUrl() ?>"><img src="<?php echo foaf_image('/static/images/story_images/story_000004.jpg') ?>" width="264" alt="<?php echo htmlspecialchars($s->getTitle(), ENT_COMPAT, 'utf-8') ?>"></a>
+                                            <a href="<?php echo $s->getUrl() ?>"><img src="<?php print htmlspecialchars($content['story1_image_url']) ?>" width="264" alt="<?php echo htmlspecialchars($s->getTitle(), ENT_COMPAT, 'utf-8') ?>"></a>
                                         </div>
                                                     <?php endif; ?>
 
@@ -83,7 +83,7 @@
                                 <div class="content">
                                   <?php if ($content['story3_image_url']): ?>
                                     <div class="image">
-                                        <a href="<?php echo $s->getUrl() ?>"><img src="<?php echo foaf_image('/static/images/story_images/story_000002.jpg') ?>" width="264" alt="<?php echo htmlspecialchars($s->getTitle(), ENT_COMPAT, 'utf-8') ?>"></a>
+                                        <a href="<?php echo $s->getUrl() ?>"><img src="<?php print htmlspecialchars($content['story3_image_url']) ?>" width="264" alt="<?php echo htmlspecialchars($s->getTitle(), ENT_COMPAT, 'utf-8') ?>"></a>
                                     </div>
                                                 <?php endif; ?>
 
@@ -114,7 +114,7 @@
                             <div class="content">
                             <?php if ($content['story2_image_url']): ?>
                                 <div class="image">
-                                    <a href="<?php echo $s->getUrl() ?>"><img src="<?php echo foaf_image('/static/images/story_images/story_000003.jpg') ?>" width="264" alt="<?php echo htmlspecialchars($s->getTitle(), ENT_COMPAT, 'utf-8') ?>"></a>
+                                    <a href="<?php echo $s->getUrl() ?>"><img src="<?php print htmlspecialchars($content['story2_image_url']) ?>" width="264" alt="<?php echo htmlspecialchars($s->getTitle(), ENT_COMPAT, 'utf-8') ?>"></a>
                                 </div>
                                             <?php endif; ?>
 
@@ -139,7 +139,7 @@
                             <div class="content">
                             <?php if ($content['story4_image_url']): ?>
                                 <div class="image">
-                                    <a href="<?php echo $s->getUrl() ?>"><img src="<?php echo foaf_image('/static/images/story_images/story_000001.jpg') ?>" width="264" alt="<?php echo htmlspecialchars($s->getTitle(), ENT_COMPAT, 'utf-8') ?>"></a>
+                                    <a href="<?php echo $s->getUrl() ?>"><img src="<?php print htmlspecialchars($content['story4_image_url']) ?>" width="264" alt="<?php echo htmlspecialchars($s->getTitle(), ENT_COMPAT, 'utf-8') ?>"></a>
                                 </div>
                             <?php endif ?>
                                 <h5 class="blue">
