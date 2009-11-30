@@ -194,33 +194,30 @@ class Entity extends BaseEntity
   
   public function getPhotoURLLarge()
   {
-    $out = preg_replace('/_mid\.(png|gif|jpg)$/', "_large.$1", $this->getPhotoUrl());
-    $out = str_replace('/mid/', '/large/', $out);
-
-    //file system check for file, ideally fix this and remove for phase two
-    if (file_exists(sfConfig::get('sf_web_dir').$out)) {
+    $out = $this->getPhotoUrl();
+    if ($out) {
+      $out = preg_replace('/_mid\.(png|gif|jpg)$/', "_large.$1", $out);
+      $out = str_replace('/mid/', '/large/', $out);
       return $out;
-    }
-    else {
-      return foaf_image('/static/images/site/placeholder_large.png');
+    } else {
+      return foaf_image('/static/images/avatar/large/noinfo_large.png');
     }
   }
   
   public function getPhotoURLMedium()
   {
-    return $this->getPhotoUrl();    
+    return ($out = $this->getPhotoUrl()) ? $out : foaf_image('/static/images/avatar/mid/noinfo_mid.png');
   }
   
   public function getPhotoURLSmall()
   {
-    $out = preg_replace('/_mid\.(png|gif|jpg)$/', "_small.$1", $this->getPhotoUrl());
-    $out = str_replace('/mid/', '/small/', $out);
-    
-    //file system check for file, ideally fix this and remove for phase two
-    if (file_exists(sfConfig::get('sf_web_dir').$out)) {
+
+    $out = $this->getPhotoUrl();
+    if ($out) {
+      $out = preg_replace('/_mid\.(png|gif|jpg)$/', "_small.$1", $out);
+      $out = str_replace('/mid/', '/small/', $out);
       return $out;
-    }
-    else {
+    } else {
       return foaf_image('/static/images/site/placeholder_small.png');
     }
   }
