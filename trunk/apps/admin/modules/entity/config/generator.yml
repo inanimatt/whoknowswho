@@ -23,6 +23,7 @@ generator:
         display: 
           "NONE": [ entity_type_id, name, slug, subtitle, description]
           "Photo": [ photo_url, photo_caption, photo_licence ]
+          "Stats": [ views, interest, connectedness ]
           "Metadata": [is_locked, superceded_by_id, authority_id, created_by, version_comment ]
         fields:
           

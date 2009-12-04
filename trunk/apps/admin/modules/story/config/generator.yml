@@ -28,6 +28,7 @@ generator:
         display:
           "NONE": [ title, slug, subtitle, teaser, description, created_by ]
           "Rating": [ StoryRating ]
+          "Stats": [ views, interest ]
           "Image": [ photo_url, photo_caption, photo_licence ]
           "Metadata": [ story_type_id, is_public, version_comment ]
       edit:    ~
