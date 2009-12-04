@@ -41,7 +41,7 @@ EOF;
 
   protected function execute($arguments = array(), $options = array())
   {
-    if (!tuiCronUtils::claimSlot('update-interest'))
+    if (!tuiCronUtils::claimSlot($this->name))
     {
       exit;
     }

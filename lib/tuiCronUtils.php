@@ -25,7 +25,7 @@ class tuiCronUtils
       return false;
     }
     
-    tuiCacheHandler::getInstance()->set('cron-block-'.$taskname, true, 20);
+    tuiCacheHandler::getInstance()->set('cron-block-'.$taskname, 'busy', 20);
     return true;
   }
   
