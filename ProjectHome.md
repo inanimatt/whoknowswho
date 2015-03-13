@@ -1,0 +1,3 @@
+WhoKnowsWho is a project to map and explore the connections between people in power with the aim of increasing transparency and accountability in government. The code was developed by Tui Interactive Media for Channel 4 under an open-source license.
+
+The code is all available through the SVN repository on this site. Click on the "Source" tab above for instructions on how to retrieve it. The README file in the Wiki explains how to install and configure the application.
